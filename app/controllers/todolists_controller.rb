@@ -13,7 +13,9 @@ class TodolistsController < ApplicationController
 
     def create
         @work = Todolist.new(todolist_params)
+        @work.user = current_user
         if @work.save 
+            flash[:notice] = "Work was created successfully"
             redirect_to @work
         else 
             render "new"
@@ -27,6 +29,7 @@ class TodolistsController < ApplicationController
     def update 
         @work = Todolist.find(params[:id])
         if @work.update(todolist_params)
+            flash[:notice] = "Your work is updated successfully"
             redirect_to @work 
         else 
             render "edit"
