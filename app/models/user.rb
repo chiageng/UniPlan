@@ -1,5 +1,5 @@
 class User < ApplicationRecord
-    has_many :todolists
+    has_many :todolists, dependent: :destroy
     validates :username, presence: true, uniqueness: {case_sensitive: false}
     
     VALID_EMAIL_REGEX = /\A([^@\s]+)@((?:[-a-z0-9]+\.)+[a-z]{2,})\z/i

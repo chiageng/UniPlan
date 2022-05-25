@@ -12,8 +12,8 @@
           <td>
             <%= link_to "Show", todolist_path(work)%>
             <%= link_to "Edit", edit_todolist_path(work)%>
-            <%= link_to "Done", todolist_path(work), method: :delete, data: {confirm: "Are you sure?"} %>
           </td>
+          <td><%= button_to "Done", work, method: :delete, data: {confirm: "Are you sure?"} %></td>
     </tbody>
   <% end%>
   </tbody>

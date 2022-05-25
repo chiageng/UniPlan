@@ -1,10 +1,16 @@
 class TodolistsController < ApplicationController
+    before_action :todolist_find, only: [:destroy, :update, :edit, :show]
+    before_action :require_user, only: [:new, :create, :destroy, :edit, :update]
+    before_action :require_same_user, only: [:edit, :update, :destroy]
+
     def index
         @works = Todolist.all 
+        if current_user
+            @works_filter = current_user.todolists
+        end 
     end 
 
     def show 
-        @work = Todolist.find(params[:id])
     end 
 
     def new 
@@ -23,11 +29,9 @@ class TodolistsController < ApplicationController
     end 
 
     def edit
-        @work = Todolist.find(params[:id])
     end 
 
     def update 
-        @work = Todolist.find(params[:id])
         if @work.update(todolist_params)
             flash[:notice] = "Your work is updated successfully"
             redirect_to @work 
@@ -37,13 +41,23 @@ class TodolistsController < ApplicationController
     end 
 
     def destroy
-        @work = Todolist.find(params[:id])
         @work.destroy
-        redirect_to to_do_lists_path
+        redirect_to todolists_path
     end 
 
     private 
     def todolist_params 
         params.require(:todolist).permit(:work)
+    end 
+
+    def todolist_find 
+        @work = Todolist.find(params[:id])
+    end 
+
+    def require_same_user
+        if current_user != @work.user 
+            flash[:alert] = "You cannot delete some other people work"
+            redirect_to todolists_path
+        end 
     end 
 end
