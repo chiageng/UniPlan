@@ -21,7 +21,7 @@ class TodolistsController < ApplicationController
         @work = Todolist.new(todolist_params)
         @work.user = current_user
         if @work.save 
-            flash[:notice] = "Work was created successfully"
+            flash[:success] = "Work was created successfully"
             redirect_to @work
         else 
             render "new"
@@ -33,7 +33,7 @@ class TodolistsController < ApplicationController
 
     def update 
         if @work.update(todolist_params)
-            flash[:notice] = "Your work is updated successfully"
+            flash[:success] = "Your work is updated successfully"
             redirect_to @work 
         else 
             render "edit"
@@ -56,7 +56,7 @@ class TodolistsController < ApplicationController
 
     def require_same_user
         if current_user != @work.user 
-            flash[:alert] = "You cannot delete some other people work"
+            flash[:danger] = "You cannot delete some other people work"
             redirect_to todolists_path
         end 
     end 
