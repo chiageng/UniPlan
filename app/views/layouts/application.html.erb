@@ -17,9 +17,14 @@
   <body>
 
     <%= render 'home/header' %>
-    <div class = "container">
-      <br/>
-    <%= yield %>
+    <br/>
+
+    <div id = "main" class = "container">
+      <div class = 'row'>
+        <div class='col-md-8 col-md-offset-3'>
+          <%= render 'home/flash_messages' %>
+          <%= yield %>
+    </div>
   </div>
 
     <!-- Optional JavaScript -->
