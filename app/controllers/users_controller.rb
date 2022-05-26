@@ -10,7 +10,7 @@ class UsersController < ApplicationController
     def create 
         @user = User.new(user_params)
         if @user.save 
-            flash[:notice] = "Welcome to UniPlan"
+            flash[:primary] = "Registration successful. Login to your account now!"
             redirect_to todolists_path 
         else 
             render "new"
@@ -30,7 +30,7 @@ class UsersController < ApplicationController
 
     def update 
         if @user.update(user_params)
-            flash[:notice] = "Your account has been updated successfully"
+            flash[:success] = "Your account has been updated successfully"
             redirect_to todolists_path
         else 
             render "new"
@@ -40,7 +40,7 @@ class UsersController < ApplicationController
     def destroy 
         @user.destroy 
         session[:user_id] = nil if @user == current_user
-        flash[:notice] = "Your account has been deleted successfully"
+        flash[:success] = "Your account has been deleted successfully"
         redirect_to users_path
     end 
 
@@ -55,7 +55,7 @@ class UsersController < ApplicationController
 
     def require_same_user
         if current_user != @user 
-            flash[:alert] = "You cannot edit other people account"
+            flash[:danger] = "You cannot edit other people account"
             redirect_to users_path
         end 
     end 
