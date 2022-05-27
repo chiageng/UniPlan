@@ -1,0 +1,17 @@
+<div>
+  <%= link_to new_chat_path, class: 'btn btn-secondary' do %>
+    Create a chat
+  <% end %>
+</div>
+
+<% if @chats.present? %>
+  <nav>
+    <% @chats.each do |chat| %>
+      <%= link_to chat.name, chat_path(chat), class: 'nav-link' %>
+    <% end %>
+  </nav>
+<% else %>
+  <div>
+    The are no chats
+  </div>
+<% end %>
