@@ -1,9 +1,18 @@
 <h1>
-  <%= @chat.name %> <%= link_to "Edit", edit_chat_path%>
+  <%= @chat.name %> 
 </h1>
 
+<h4>
+  <%= link_to "Edit", edit_chat_path%>
+  <%= button_to "Delete Chat", chat_path, 
+      form: { data: { turbo_confirm: "Are you sure?"} }, 
+      method: :delete,
+      class: "btn btn-danger btn-sm float-right"%>
+  </h4>
+
+
 <div class="col">
-  <div class="chatCSS">
+  <div>
     <% @messages.each do |message| %>
     <div class="col">
       <p class="mb-1">
@@ -19,17 +28,18 @@
   </div>
 
   <%= simple_form_for @message, remote: true do |form| %>
-  <div>
+  <div class= 'input-group'>
     <%= form.input :msg, as: :string,
     wrapper: false,
     label: false,
     input_html: {
      class: 'chat-input'
-     } %>
+     }%>
      <div>
       <%= form.submit "Send", class: 'btn btn-primary chat-input' %>
     </div>
   </div>
+</div>
 
   <%= form.input :chat_id, as: :hidden %>
   <% end %>

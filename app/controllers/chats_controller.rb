@@ -22,18 +22,22 @@ class ChatsController < ApplicationController
 		end
 	end
 
-	def edit
-	end
-
 	def update
 		if @chat.update(permitted_parameters)
 			flash[:success] = "Chat #{@chat.name} updated!"
-			redirect_to chats_path
+			redirect_to chat_path
 		else
 			flash[:danger] = "Please Try Again 2"
 			render :new
 		end
 	end
+
+	def destroy 
+        @chat.destroy 
+        chat[:chat_id] = nil if @user == current_user
+        flash[:success] = "Your chat has been deleted successfully"
+        redirect_to chats_path
+    end
 
 	def show
 		@message = Message.new chat: @chat
