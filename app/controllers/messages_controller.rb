@@ -7,7 +7,7 @@ class MessagesController < ApplicationController
 		@message = Message.create user: current_user,
 								  chat: @chat,
 								  msg: params.dig(:message, :msg)
-
+		redirect_to chat_path(@chat)
 	end
 
 	protected
