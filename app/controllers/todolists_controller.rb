@@ -1,6 +1,6 @@
 class TodolistsController < ApplicationController
     before_action :todolist_find, only: [:destroy, :update, :edit, :show]
-    before_action :require_user, only: [:new, :create, :destroy, :edit, :update]
+    before_action :require_user, only: [:index, :new, :create, :destroy, :edit, :update]
     before_action :require_same_user, only: [:edit, :update, :destroy]
     
     def index

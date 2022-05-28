@@ -1,0 +1,26 @@
+<h1> Showing all topics in this forum </h1>
+
+<table>
+  <thead>
+    <tr>
+      <th> Topic</th>
+      <th> Desciption</th>
+      <th> Created_by</th>
+    </tr>
+  </thead>
+  <% @forums.each do |forum| %>
+    <tbody>
+          <td> <%= forum.topic%> </td>
+          <td> <%= forum.description%> </td>
+          <td> <%= forum.user.username%> </td>
+          <td> <%= link_to "Show", forum_path(forum)%> </td>
+          <% if forum.user == current_user%>
+            <td><%= link_to "Edit", edit_forum_path(forum)%> </td>
+            <td><%= button_to "Delete", forum, method: :delete, data: {confirm: "Are you sure?"} %></td>
+          <% end %>
+    </tbody>
+  <% end%>
+  </tbody>
+</table>
+
+<%= link_to "Create", new_forum_path%>

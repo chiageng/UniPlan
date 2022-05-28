@@ -13,4 +13,7 @@ Rails.application.routes.draw do
 
   resources :messages
   resources :chats
+  resources :forums do 
+    resources :comments
+  end 
 end
