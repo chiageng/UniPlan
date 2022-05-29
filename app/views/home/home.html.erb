@@ -1,2 +1,14 @@
-<h1> Home Page </h1>
-
+<div class="position-relative">
+  <div class="image position-absolute top-0 start-0">
+  </div>
+  <div class="position-absolute top-0 start-50 text-center">
+    <h1 class="home-text display-4 fw-bold bg-primary text-wrap ">Welcome to UniPlan</h1>
+    <p class="lead fw-bold fs-2">This is a university study app, a powerful and user-friendly app for you to do your timetable, to-do-list, and discuss your works with your fellow friends</p>
+    <hr class="my-4">
+    <p class="fs-5 fst-italic">It uses Ruby on Rails version 7.0 as backend and bootstrap v5.0 as frontend.</p>
+    <div>
+      <%= link_to "Login", login_path, class:"btn btn-outline-primary my-2 my-sm-0 w-15 p-3 fs-4", id: "login" %>
+      <%= link_to "Sign Up", signup_path, class:"btn btn-outline-success my-2 my-sm-0 w-15 p-3 fs-4", id: "signup" %>
+    </div>
+  </div>
+</div>
