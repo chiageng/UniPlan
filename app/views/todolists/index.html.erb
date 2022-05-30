@@ -7,14 +7,16 @@
     </tr>
   </thead>
   <% @works.each do |work| %>
-    <tbody>
-          <td> <%= work.work%> </td>
-          <td>
-            <%= link_to "Show", todolist_path(work)%>
-            <%= link_to "Edit", edit_todolist_path(work)%>
-          </td>
-          <td><%= button_to "Done", work, method: :delete, data: {confirm: "Are you sure?"} %></td>
-    </tbody>
+    <% if work.user == current_user %>
+      <tbody>
+            <td> <%= work.work%> </td>
+            <td>
+              <%= link_to "Show", todolist_path(work)%>
+              <%= link_to "Edit", edit_todolist_path(work)%>
+            </td>
+            <td><%= button_to "Done", work, method: :delete, data: {confirm: "Are you sure?"} %></td>
+      </tbody>
+    <% end %>
   <% end%>
   </tbody>
 </table>
