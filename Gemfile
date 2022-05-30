@@ -35,7 +35,6 @@ gem 'bootsnap', '>= 1.4.4', require: false
 group :development, :test do
   gem 'sqlite3', '~> 1.4'
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
-  # gem 'byebug'
 end
 
 group :development do
@@ -55,9 +54,9 @@ group :test do
 end
 
 # For deploying to heroku
-group :production do 
+# group :production do 
   gem 'pg'
-end 
+# end 
 
 
 

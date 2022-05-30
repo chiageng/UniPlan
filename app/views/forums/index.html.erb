@@ -1,26 +1,29 @@
-<h1> Showing all topics in this forum </h1>
+<div id="background-content">
+  <h1 class= "text-center"> Showing all topics in this forum </h1>
 
-<table>
-  <thead>
-    <tr>
-      <th> Topic</th>
-      <th> Desciption</th>
-      <th> Created_by</th>
-    </tr>
-  </thead>
   <% @forums.each do |forum| %>
-    <tbody>
-          <td> <%= forum.topic%> </td>
-          <td> <%= forum.description%> </td>
-          <td> <%= forum.user.username%> </td>
-          <td> <%= link_to "Show", forum_path(forum)%> </td>
-          <% if forum.user == current_user%>
-            <td><%= link_to "Edit", edit_forum_path(forum)%> </td>
-            <td><%= button_to "Delete", forum, method: :delete, data: {confirm: "Are you sure?"} %></td>
-          <% end %>
-    </tbody>
+    <div class="row justify-content-md-center ">
+      <div class ="col-8 mt-4">
+        <div class="card text-center shadow mb-5 bg-body rounded">
+          <div class="card-header font-italic font-weight-bold bg-success p-2 text-dark bg-opacity-75">
+            Created by : <%= forum.user.username%>
+          </div>
+          <div class="card-body">
+            <h5 class="card-title text-success font-weight-bold text-capitalize"><%= forum.topic%></h5>
+            <p class="card-text"><%= truncate(forum.description, length:100)%></p>
+            <%= link_to "Show", forum_path(forum), class:"btn btn-success font-weight-bold"%>
+            <% if forum.user == current_user%>
+                  <%= link_to "Edit", edit_forum_path(forum), class:"btn btn-primary font-weight-bold"%>
+            <% end %>
+          </div>
+          <div class="card-footer text-muted bg-success p-2 text-dark bg-opacity-25">
+            Created <%= time_ago_in_words(forum.created_at) %> ago,
+            edited <%= time_ago_in_words(forum.updated_at) %> ago
+          </div>
+        </div>
+      </div>
+    </div>
   <% end%>
-  </tbody>
-</table>
 
-<%= link_to "Create", new_forum_path%>
+
+
